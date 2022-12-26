@@ -168,7 +168,7 @@ const Write = () => {
             style={{ display: "none" }}
             type="file"
             id="file"
-            name=""
+            name="file"
             onChange={(e) => setFile(e.target.files[0])}
           />
           <label className="file" htmlFor="file">
