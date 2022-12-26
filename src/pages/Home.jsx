@@ -16,7 +16,7 @@ const Home = () => {
       try {
         let res;
         if (cat) {
-          res = await axios.get(`/api/posts${cat}&page=${page}&?pageSize=${pageSize}`);
+          res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts${cat}&page=${page}&?pageSize=${pageSize}`);
         } else {
           res = await axios.get(`/api/posts?page=${page}&pageSize=${pageSize}`);
         }
@@ -48,9 +48,9 @@ const Home = () => {
       setPage(page + 1);
       let res;
       if (cat) {
-        res = await axios.get(`/api/posts${cat}&page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts${cat}&page=${page}&pageSize=${pageSize}`);
       } else {
-        res = await axios.get(`/api/posts?page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts?page=${page}&pageSize=${pageSize}`);
       }
       
       setPosts([...posts, ...res.data]);

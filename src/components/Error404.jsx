@@ -17,7 +17,7 @@ const Error404 = () => {
             The page you are looking for might have been removed had its name
             changed or is temporarily unavailable.
           </p>
-          <Link to={`https://blog-mysql-api-production.up.railway.app`}>Go To Homepage</Link>
+          <Link to={`/`}>Go To Homepage</Link>
         </div>
       </div>
     </>

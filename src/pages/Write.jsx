@@ -64,7 +64,7 @@ const Write = () => {
     try {
       if (state) {
         // Actualizar post
-        await axios.put(`/api/posts/${state.id}`, {
+        await axios.put(`https://blog-mysql-api-production.up.railway.app/api/posts/${state.id}`, {
           title,
           desc: value,
           cat,
@@ -80,7 +80,7 @@ const Write = () => {
       } else {
         // Crear nuevo post
         e.preventDefault()
-        await axios.post(`/api/posts`, {
+        await axios.post(`https://blog-mysql-api-production.up.railway.app/api/posts`, {
           title,
           desc: value,
           cat,
