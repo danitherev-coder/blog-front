@@ -62,6 +62,7 @@ const Write = () => {
       console.log(err);
     }
   };
+  
 
   const handleClick = async (e) => {
     e.preventDefault();
