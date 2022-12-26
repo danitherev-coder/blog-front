@@ -51,7 +51,11 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData);
+      const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
       console.log(res.data);
       return res.data;
     } catch (err) {
@@ -88,7 +92,7 @@ const Write = () => {
           img: file ? imgUrl : "",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         });
-        
+
         Swal.fire({
           icon: 'success',
           title: 'Post creado',
