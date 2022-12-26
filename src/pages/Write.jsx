@@ -52,6 +52,7 @@ const Write = () => {
       const formData = new FormData();
       formData.append("file", file);
       const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData);
+      console.log(res.data);
       return res.data;
     } catch (err) {
       console.log(err);
