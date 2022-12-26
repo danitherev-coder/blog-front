@@ -24,7 +24,7 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts/${postId}`);
+        const res = await axios.get(`/api/posts/${postId}`);
         setPost(res.data);
       } catch (err) {
         console.log(err);
@@ -52,7 +52,7 @@ const Single = () => {
       }).then(async (result) => {
         if (result.value) {
           // Ejecutar acción de eliminación aquí
-          await axios.delete(`/posts/${postId}`);
+          await axios.delete(`/api/posts/${postId}`);
             navigate("/")
           Swal.fire({
             icon: 'success',

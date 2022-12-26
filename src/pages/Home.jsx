@@ -16,9 +16,9 @@ const Home = () => {
       try {
         let res;
         if (cat) {
-          res = await axios.get(`/posts${cat}&page=${page}&?pageSize=${pageSize}`);
+          res = await axios.get(`/api/posts${cat}&page=${page}&?pageSize=${pageSize}`);
         } else {
-          res = await axios.get(`/posts?page=${page}&pageSize=${pageSize}`);
+          res = await axios.get(`/api/posts?page=${page}&pageSize=${pageSize}`);
         }
         setPosts(res.data);
       } catch (err) {
@@ -48,9 +48,9 @@ const Home = () => {
       setPage(page + 1);
       let res;
       if (cat) {
-        res = await axios.get(`/posts${cat}&page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`/api/posts${cat}&page=${page}&pageSize=${pageSize}`);
       } else {
-        res = await axios.get(`/posts?page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`/api/posts?page=${page}&pageSize=${pageSize}`);
       }
       
       setPosts([...posts, ...res.data]);
