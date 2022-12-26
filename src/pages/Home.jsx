@@ -18,7 +18,7 @@ const Home = () => {
         if (cat) {
           res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts${cat}&page=${page}&?pageSize=${pageSize}`);
         } else {
-          res = await axios.get(`/api/posts?page=${page}&pageSize=${pageSize}`);
+          res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts?page=${page}&pageSize=${pageSize}`);
         }
         setPosts(res.data);
       } catch (err) {
