@@ -10,7 +10,7 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("/auth/login", inputs);
+    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs);
     setCurrentUser(res.data);
     Swal.fire({
       icon: "success",
@@ -20,7 +20,7 @@ export const AuthContexProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout");
+    await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/logout");
     setCurrentUser(null);    
     Swal.fire({
       icon: "success",
