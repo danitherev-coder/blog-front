@@ -13,11 +13,7 @@ export const AuthContexProvider = ({ children }) => {
     const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
       withCredentials: true,
       headers: {
-        origin: "https://hilarious-cobbler-0478cd.netlify.app",
-        "Access-Control-Allow-Origin": "https://hilarious-cobbler-0478cd.netlify.app",
-        "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        origin: "https://hilarious-cobbler-0478cd.netlify.app"
       }
     });
     setCurrentUser(res.data);
