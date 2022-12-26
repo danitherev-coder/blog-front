@@ -1,0 +1,80 @@
+
+import React, { useState } from "react";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../context/authContext";
+
+const Login = () => {
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
+  const [err, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const { login } = useContext(AuthContext);
+
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(inputs)
+      navigate("/");
+
+    } catch (err) {
+      setError(err.response.data);
+      let errores = err.response.data.message.map(error => error.msg)
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un error',
+        // text: errores.join(', ')+'\n',
+        // text: errores.join('<ul><li>'),
+        html: '<ul style="list-style: none;font-size:15px"><li>' + errores.join('</li><li>') + '</li></ul>'
+      })
+
+      if (err.response.data.code === 500) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Hubo un error',
+          text: 'INTERNAL SERVER ERROR',
+        })
+      }
+
+    }
+  };
+  return (
+    <div className="auth">
+      <h1>Login</h1>
+      <form>
+        <input
+          required
+          type="text"
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+        />
+        <input
+          required
+          type="password"
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+        />
+        <button onClick={handleSubmit}>Login</button>
+        {err && <p style={{ fontSize: "20px" }}>{err.msg}</p>}
+        <span>
+          Don't you have an account? <Link to="/register">Register</Link>
+        </span>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
