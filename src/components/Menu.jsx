@@ -34,7 +34,7 @@ const Menu = ({ cat }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/posts/?cat=${cat}`);
+        const res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts/?cat=${cat}`);
         // Filter out current post from list of other posts
         const otherPosts = _.shuffle(res.data.filter((post) => post.id !== id));
         setPosts(otherPosts.slice(0, 3))
