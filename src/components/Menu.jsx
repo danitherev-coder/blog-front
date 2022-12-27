@@ -34,7 +34,7 @@ const Menu = ({ cat }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts/?cat=${cat}`);
+        const res = await axios.get(`/posts/?cat=${cat}`);
         // Filter out current post from list of other posts
         const otherPosts = _.shuffle(res.data.filter((post) => post.id !== id));
         setPosts(otherPosts.slice(0, 3))
@@ -53,7 +53,7 @@ const Menu = ({ cat }) => {
       {posts.map((post) => (
         <div className="post" key={post.id}>
           <Link className="link" to={`/post/${post.id}`}>
-            <img src={`../upload/${post?.img}`} alt="" />
+            <img src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post?.img}`} alt="" />
             <h2>{post.title}</h2>
             <button>Read More</button>
           </Link>

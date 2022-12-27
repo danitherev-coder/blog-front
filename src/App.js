@@ -39,8 +39,9 @@ const router = createBrowserRouter([
       {
         path: "/write",
         element: <Write />,
-      },
+      }
     ],
+    
   },
   {
     path: "/register",
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "*",
+    path: "*/",
+    element: <Error404 />
+  },
+  {
+    path: "/*",
     element: <Error404 />
   }
 ]);

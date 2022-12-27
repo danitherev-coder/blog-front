@@ -16,9 +16,9 @@ const Home = () => {
       try {
         let res;
         if (cat) {
-          res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts${cat}&page=${page}&?pageSize=${pageSize}`);
+          res = await axios.get(`/posts${cat}&page=${page}&?pageSize=${pageSize}`);
         } else {
-          res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts?page=${page}&pageSize=${pageSize}`);
+          res = await axios.get(`/posts?page=${page}&pageSize=${pageSize}`);
         }
         setPosts(res.data);
       } catch (err) {
@@ -48,9 +48,9 @@ const Home = () => {
       setPage(page + 1);
       let res;
       if (cat) {
-        res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts${cat}&page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`/posts${cat}&page=${page}&pageSize=${pageSize}`);
       } else {
-        res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts?page=${page}&pageSize=${pageSize}`);
+        res = await axios.get(`/posts?page=${page}&pageSize=${pageSize}`);
       }
       
       setPosts([...posts, ...res.data]);
@@ -58,6 +58,7 @@ const Home = () => {
       console.log(err);
     }
   };
+  
   
 
   return (
@@ -76,7 +77,8 @@ const Home = () => {
             <div className="post" key={post.id}>
               <div className="img">
                 <img
-                  src={`../upload/${post.img}`}
+                  // src={`../upload/${post.img}`}
+                  src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post.img}`}
                   alt=""
                   style={{ width: "400px", height: "250px" }}
                 />

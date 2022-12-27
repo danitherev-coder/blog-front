@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import hljs from 'highlight.js'
 import "highlight.js/styles/base16/monokai.css";
 import ReactQuill from "react-quill";
@@ -8,10 +8,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import Swal from "sweetalert2";
 
-
+import { AuthContext } from '../context/authContext';
 
 
 const Write = () => {
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!currentUser) {
+      // Si el usuario no ha iniciado sesión, redirigir al usuario a la página principal
+      navigate('/');
+    }
+  }, [currentUser, navigate]);
 
   hljs.configure({
     languages: ['javascript', 'ruby', 'python', 'rust'],
@@ -45,13 +54,13 @@ const Write = () => {
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const upload = async () => {
+  const upload = async (e) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData, {
+      const res = await axios.post("/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -62,19 +71,18 @@ const Write = () => {
       console.log(err);
     }
   };
-  
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
+    const imgPath = await upload();
     try {
       if (state) {
         // Actualizar post
-        await axios.put(`https://blog-mysql-api-production.up.railway.app/api/posts/${state.id}`, {
+        await axios.put(`/posts/${state.id}`, {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : state.img,
+          img: file ? imgPath.url : state.img,
           updatedAt: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         });
         Swal.fire({
@@ -86,11 +94,11 @@ const Write = () => {
       } else {
         // Crear nuevo post
         e.preventDefault()
-        await axios.post(`https://blog-mysql-api-production.up.railway.app/api/posts`, {
+        await axios.post(`/posts`, {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : "",
+          img: file ? imgPath.url : "",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         });
 

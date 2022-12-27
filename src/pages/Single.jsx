@@ -16,7 +16,6 @@ const Single = () => {
   const [post, setPost] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
@@ -24,14 +23,23 @@ const Single = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts/${postId}`);
+        const res = await axios.get(`/posts/${postId}`);
         setPost(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [postId]);
+    const timeLimit = 1 * 60 * 1000;
+    const startTime = new Date().getTime();
+    setInterval(function () {
+      const currentTime = new Date().getTime();
+      const elapsedTime = currentTime - startTime;
+      if (elapsedTime > timeLimit) {
+        navigate("/");
+      }
+    }, 1000);
+  }, [postId, navigate]);
 
 
   // const updatedAt = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
@@ -52,8 +60,8 @@ const Single = () => {
       }).then(async (result) => {
         if (result.value) {
           // Ejecutar acción de eliminación aquí
-          await axios.delete(`https://blog-mysql-api-production.up.railway.app/api/posts/${postId}`);
-            navigate("/")
+          await axios.delete(`/posts/${postId}`);
+          navigate("/")
           Swal.fire({
             icon: 'success',
             title: 'Eliminado',
@@ -69,6 +77,7 @@ const Single = () => {
         title: 'Oops...',
         text: 'Algo salió mal',
       })
+
     }
 
 
@@ -88,7 +97,7 @@ const Single = () => {
   return (
     <div className="single">
       <div className="content">
-        <img src={`../upload/${post?.img}`} />
+        <img src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post?.img}`} />
         <div className="user">
           {post.userImg && <img
             src={post.userImg}
