@@ -53,7 +53,7 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
-
+  console.log("state.id", state?.id);
   // const navigate = useNavigate()
 
   const upload = async (e) => {
@@ -62,7 +62,7 @@ const Write = () => {
       formData.append("file", file);
       const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         }
       });
       console.log(res.data);
@@ -78,12 +78,21 @@ const Write = () => {
     try {
       if (state) {
         // Actualizar post
+        const user = JSON.parse(localStorage.getItem('user'));
+        const token = user.token;
+        console.log(token)
         await axios.put(`https://blog-mysql-api-production.up.railway.app/api/posts/${state.id}`, {
           title,
           desc: value,
           cat,
           img: file ? imgPath.url : state.img,
-          updatedAt: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          // updatedAt: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          updatedAt: moment(Date).format("YYYY-MM-DD HH:mm:ss"),
+        }, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            "x-access-token": token,
+          }
         });
         Swal.fire({
           icon: 'success',
@@ -94,12 +103,19 @@ const Write = () => {
       } else {
         // Crear nuevo post
         e.preventDefault()
+        const user = JSON.parse(localStorage.getItem('user'));
+        const token = user.token;
         await axios.post(`https://blog-mysql-api-production.up.railway.app/api/posts`, {
           title,
           desc: value,
           cat,
           img: file ? imgPath.url : "",
-          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          // date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+          date: moment(Date).format("YYYY-MM-DD HH:mm:ss"),
+        }, {
+          headers: {
+            "x-access-token": token,
+          }
         });
 
         Swal.fire({

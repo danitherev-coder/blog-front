@@ -58,9 +58,15 @@ const Single = () => {
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'No, cancelar',
       }).then(async (result) => {
-        if (result.value) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const token = user.token;
+        if (result.value) {         
           // Ejecutar acción de eliminación aquí
-          await axios.delete(`https://blog-mysql-api-production.up.railway.app/api/posts/${postId}`);
+          await axios.delete(`https://blog-mysql-api-production.up.railway.app/api/posts/${postId}`, {
+            headers: {
+              "x-access-token": token,
+            }
+          });
           navigate("/")
           Swal.fire({
             icon: 'success',
@@ -79,14 +85,6 @@ const Single = () => {
       })
 
     }
-
-
-    // try {
-    //   await axios.delete(`/posts/${postId}`);
-    //   navigate("/")
-    // } catch (err) {
-    //   console.log(err);
-    // }
   }
 
   // const getText = (html) => {
@@ -142,3 +140,4 @@ const Single = () => {
 };
 
 export default Single;
+
