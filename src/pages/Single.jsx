@@ -19,7 +19,7 @@ const Single = () => {
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
-  console.log(post);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,16 +30,7 @@ const Single = () => {
       }
     };
     fetchData();
-    const timeLimit = 1 * 60 * 1000;
-    const startTime = new Date().getTime();
-    setInterval(function () {
-      const currentTime = new Date().getTime();
-      const elapsedTime = currentTime - startTime;
-      if (elapsedTime > timeLimit) {
-        navigate("/");
-      }
-    }, 1000);
-  }, [postId, navigate]);
+  }, [postId]);
 
 
   // const updatedAt = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
