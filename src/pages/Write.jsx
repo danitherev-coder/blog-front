@@ -111,7 +111,7 @@ const Write = () => {
           cat,
           img: file ? imgPath.url : "",
           // date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-          date: moment(Date).format("YYYY-MM-DD HH:mm:ss"),
+          // date: moment(Date).format("YYYY-MM-DD HH:mm:ss"),
         }, {
           headers: {
             "x-access-token": token,
