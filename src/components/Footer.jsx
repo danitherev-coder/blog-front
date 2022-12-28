@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <img src={Logo} alt="" style={{width: "100px", height: "100px"}}/>
       <span>
-        Made with ♥️ by <b>Carlos Daniel</b>.
+        Made with ♥️ by <b>BEBH</b>.
       </span>
     </footer>
   );
