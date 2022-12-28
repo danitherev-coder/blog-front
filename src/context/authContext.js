@@ -9,30 +9,19 @@ export const AuthContexProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  // const login = async (inputs) => {
-  //   const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
-  //     withCredentials: true,
-  //   });
-  //   setCurrentUser(res.data);
-  //   Swal.fire({
-  //     icon: "success",
-  //     title: `Hola ${res.data.username}!`,
-  //     text: "Bienvenido a tu perfil"
-  //   })
-  // };
-
   const login = async (inputs) => {
-    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", {
+    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
       withCredentials: true,
-    }, inputs);
+    });
     setCurrentUser(res.data);
+    console.log(res.data);
     Swal.fire({
       icon: "success",
       title: `Hola ${res.data.username}!`,
       text: "Bienvenido a tu perfil"
     })
   };
-
+  
   const logout = async () => {
     await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/logout");
     setCurrentUser(null);
