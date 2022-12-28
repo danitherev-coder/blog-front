@@ -33,22 +33,22 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "https://blog-mysql-api-production.up.railway.app/api/post/:id",
+        path: "https://dancing-elf-50ff80.netlify.app/api/post/:id",
         element: <Single />,
       },
       {
-        path: "https://blog-mysql-api-production.up.railway.app/api/write",
+        path: "https://dancing-elf-50ff80.netlify.app/api/write",
         element: <Write />,
       }
     ],
     
   },
   {
-    path: "https://blog-mysql-api-production.up.railway.app/api/auth/register",
+    path: "https://dancing-elf-50ff80.netlify.app/api/auth/register",
     element: <Register />,
   },
   {
-    path: "https://blog-mysql-api-production.up.railway.app/api/auth/login",
+    path: "https://dancing-elf-50ff80.netlify.app/api/auth/login",
     element: <Login />,
   },
   {
