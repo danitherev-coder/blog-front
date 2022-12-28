@@ -33,22 +33,22 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "https://dancing-elf-50ff80.netlify.app/api/post/:id",
+        path: "/post/:id",
         element: <Single />,
       },
       {
-        path: "https://dancing-elf-50ff80.netlify.app/api/write",
+        path: "/write",
         element: <Write />,
       }
     ],
     
   },
   {
-    path: "https://dancing-elf-50ff80.netlify.app/api/auth/register",
+    path: "/register",
     element: <Register />,
   },
   {
-    path: "https://dancing-elf-50ff80.netlify.app/api/auth/login",
+    path: "/login",
     element: <Login />,
   },
   {
