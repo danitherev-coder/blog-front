@@ -33,22 +33,22 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/post/:id",
+        path: "https://blog-mysql-api-production.up.railway.app/api/post/:id",
         element: <Single />,
       },
       {
-        path: "/write",
+        path: "https://blog-mysql-api-production.up.railway.app/api/write",
         element: <Write />,
       }
     ],
     
   },
   {
-    path: "/register",
+    path: "https://blog-mysql-api-production.up.railway.app/api/auth/register",
     element: <Register />,
   },
   {
-    path: "/login",
+    path: "https://blog-mysql-api-production.up.railway.app/api/auth/login",
     element: <Login />,
   },
   {

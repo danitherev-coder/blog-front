@@ -13,8 +13,7 @@ export const AuthContexProvider = ({ children }) => {
     const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
       withCredentials: true,
     });
-    setCurrentUser(res.data);
-    console.log(res.data);
+    setCurrentUser(res.data);    
     Swal.fire({
       icon: "success",
       title: `Hola ${res.data.username}!`,
