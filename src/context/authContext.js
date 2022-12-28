@@ -9,13 +9,22 @@ export const AuthContexProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  // const login = async (inputs) => {
+  //   const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
+  //     withCredentials: true,
+  //   });
+  //   setCurrentUser(res.data);
+  //   Swal.fire({
+  //     icon: "success",
+  //     title: `Hola ${res.data.username}!`,
+  //     text: "Bienvenido a tu perfil"
+  //   })
+  // };
+
   const login = async (inputs) => {
-    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
+    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", {
       withCredentials: true,
-      // headers: {
-      //   origin: "https://hilarious-cobbler-0478cd.netlify.app"
-      // }
-    });
+    }, inputs);
     setCurrentUser(res.data);
     Swal.fire({
       icon: "success",
