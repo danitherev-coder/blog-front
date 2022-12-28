@@ -19,7 +19,7 @@ const Single = () => {
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
-
+  console.log(post);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,7 +104,7 @@ const Single = () => {
           <div className="info">
             <span>{post.username}</span>
             {/* // si no edite el post, que se muestre la fecha de creacion, sino que aparezca el mensaje de actualizo el:  */}
-            {post.updatedAt ? <p>Actualizado {moment(post.updatedAt).fromNow()}</p> : <p>Publicado {moment(post.date).fromNow()}</p>}
+            {post.updatedAt ? <p>Actualizado {moment(post.updatedAt).fromNow()}</p> : <p>Publicado {moment(post.createdAt).fromNow()}</p>}
             {/* <p>Posted {moment(post.date).fromNow()}</p> */}
           </div>
           {currentUser?.username === post.username && (
