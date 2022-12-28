@@ -10,7 +10,7 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/login", inputs, {
+    const res = await axios.post("https://blog-mysql-api-production.up.railway.app/auth/login", inputs, {
       withCredentials: true,
       // headers: {
       //   origin: "https://hilarious-cobbler-0478cd.netlify.app"
@@ -25,7 +25,7 @@ export const AuthContexProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/logout");
+    await axios.post("https://blog-mysql-api-production.up.railway.app/auth/logout");
     setCurrentUser(null);
     Swal.fire({
       icon: "success",

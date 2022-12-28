@@ -21,7 +21,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://blog-mysql-api-production.up.railway.app/api/auth/register", inputs);
+      await axios.post("https://blog-mysql-api-production.up.railway.app/auth/register", inputs);
 
       Swal.fire({
         icon: 'success',

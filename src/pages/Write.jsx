@@ -60,7 +60,7 @@ const Write = () => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await axios.post("https://blog-mysql-api-production.up.railway.app/api/upload", formData, {
+      const res = await axios.post("https://blog-mysql-api-production.up.railway.app/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         }
@@ -78,7 +78,7 @@ const Write = () => {
     try {
       if (state) {
         // Actualizar post
-        await axios.put(`https://blog-mysql-api-production.up.railway.app/api/posts/${state.id}`, {
+        await axios.put(`https://blog-mysql-api-production.up.railway.app/posts/${state.id}`, {
           title,
           desc: value,
           cat,
@@ -94,7 +94,7 @@ const Write = () => {
       } else {
         // Crear nuevo post
         e.preventDefault()
-        await axios.post(`https://blog-mysql-api-production.up.railway.app/api/posts`, {
+        await axios.post(`https://blog-mysql-api-production.up.railway.app/posts`, {
           title,
           desc: value,
           cat,
