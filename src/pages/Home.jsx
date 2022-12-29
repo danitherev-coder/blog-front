@@ -25,7 +25,7 @@ const Home = () => {
         console.log(err);
       }
     };
-    fetchData();    
+    fetchData();
   }, [cat, page, pageSize]);
 
   const getText = (html) => {
@@ -52,14 +52,14 @@ const Home = () => {
       } else {
         res = await axios.get(`https://blog-mysql-api-production.up.railway.app/api/posts?page=${page}&pageSize=${pageSize}`);
       }
-      
+
       setPosts([...posts, ...res.data]);
     } catch (err) {
       console.log(err);
     }
   };
-  
-  
+
+
 
   return (
     <div className="home">
@@ -78,6 +78,7 @@ const Home = () => {
               <div className="img">
                 <img
                   // src={`../upload/${post.img}`}
+                  loading="lazy"
                   src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post.img}`}
                   alt=""
                   style={{ width: "400px", height: "250px" }}

@@ -86,7 +86,7 @@ const Single = () => {
   return (
     <div className="single">
       <div className="content">
-        <img src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post?.img}`} />
+        <img loading="lazy" src={`http://res.cloudinary.com/dpvk1flpp/image/upload/v1672158335/${post?.img}`} />
         <div className="user">
           {post.userImg && <img
             src={post.userImg}
